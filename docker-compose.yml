@@ -34,6 +34,14 @@ services:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
 
+  nodejs:
+    image: node:20
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+       - "8080:8080"
+
 volumes:
   grafana_data: {}
   influxdb_data: {}
