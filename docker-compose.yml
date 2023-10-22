@@ -42,6 +42,18 @@ services:
     ports:
        - "8080:8080"
 
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+
 volumes:
   grafana_data: {}
   influxdb_data: {}
