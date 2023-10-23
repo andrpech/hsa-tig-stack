@@ -20,7 +20,7 @@ datasources:
       defaultBucket: influx
       tlsSkipVerify: true
     secureJsonData:
-      token: aYsCqzi2TlaEwqOhzHFdvnlyjU31dStnkXwRzKfSFxhOzD1qeGIR69TnZN3y9CtimuvNs9hGqKNy9XmofPqUIA==
+      token: yiEyEH7sg4YE-M4rES47sGv23oGOfQe0k56Md2f-nb6PpMyhFIGrx5uPzyVjxXsItN7RY-UJhQjaZalLQwv91w==
       version: 1
       editable: false
 
