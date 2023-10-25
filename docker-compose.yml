@@ -62,6 +62,15 @@ services:
     ports:
       - "9200:9200"
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-example/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-example/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+
 
 volumes:
   grafana_data: {}
