@@ -30,195 +30,6 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 1,
-      "interval": "",
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "query": "from(bucket: \"influx\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"performance_request_successful_time\") |> aggregateWindow(every: v.windowPeriod, fn: mean, column: \"_value\") |> group(columns: [\"_start\", \"_stop\", \"_field\", \"type\"])",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Request Time",
-      "tooltip": {
-        "shared": true,
-        "sort": 1,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:237",
-          "decimals": null,
-          "format": "ms",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:238",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "InfluxDB",
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 11,
-        "w": 24,
-        "x": 0,
-        "y": 9
-      },
-      "hiddenSeries": false,
-      "id": 2,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "total": true,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "query": "from(bucket: \"influx\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"performance_request_successful_count\") |> aggregateWindow(every: v.windowPeriod, fn: sum, column: \"_value\") |> yield(name: \"sum\")",
-          "refId": "A"
-        },
-        {
-          "query": "from(bucket: \"influx\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"performance_request_successful_count\") |> aggregateWindow(every: v.windowPeriod, fn: sum, column: \"_value\") |> yield(name: \"sum\")",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Requests per Second",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:126",
-          "format": "reqps",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:127",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "InfluxDB",
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 24,
-        "x": 0,
         "y": 20
       },
       "hiddenSeries": false,
@@ -251,7 +62,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "query": "from(bucket: \"influx\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"type\"] == \"death-star-attack\" or r[\"type\"] == \"cantina-meeting\" or r[\"type\"] == \"endor-battle\" or r[\"type\"] == \"lightsaber-duel\" or r[\"type\"] == \"pod-race\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"_measurement\"] == \"performancerequest_successful_count\")\n  |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)\n  |> map(fn: (r) => ({ r with _value: r._value / 5 }))  // Assuming v.windowPeriod is 5 seconds.\n  |> yield(name: \"RPS\")\n",
+          "query": "from(bucket: \"influx\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"performancenodejs_request_successful\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -259,7 +70,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Star Wars Event Metrics",
+      "title": "Node.js Metrics",
       "tooltip": {
         "shared": true,
         "sort": 1,
@@ -351,7 +162,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "MongoDB Operations",
+      "title": "MongoDB Metrics",
       "tooltip": {
         "shared": true,
         "sort": 1,
@@ -533,7 +344,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "query": "from(bucket: \"influx\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"nginx\")\n  |> filter(fn: (r) => \n      r[\"_field\"] == \"accepts\" or \n      r[\"_field\"] == \"active\" or \n      r[\"_field\"] == \"handled\" or \n      r[\"_field\"] == \"reading\" or \n      r[\"_field\"] == \"requests\" or \n      r[\"_field\"] == \"waiting\" or \n      r[\"_field\"] == \"writing\"\n  )\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> group(columns: [\"_field\"])\n  |> yield(name: \"Nginx Metrics\")",
+          "query": "from(bucket: \"influx\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"nginx\")\n  |> filter(fn: (r) => \n      r[\"_field\"] == \"accepts\" or \n      r[\"_field\"] == \"active\" or \n      r[\"_field\"] == \"handled\" or \n      r[\"_field\"] == \"reading\" or \n      r[\"_field\"] == \"requests\" or \n      r[\"_field\"] == \"waiting\" or \n      r[\"_field\"] == \"writing\"\n  )\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],

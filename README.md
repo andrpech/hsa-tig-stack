@@ -1,15 +1,5 @@
 # Example Docker Compose project for Telegraf, InfluxDB and Grafana
 
-This an example project to show the TIG (Telegraf, InfluxDB and Grafana) stack.
-
-![Example Screenshot](./example.png?raw=true "Example Screenshot")
-
-## Start the stack with docker compose
-
-```bash
-$ docker-compose up
-```
-
 ## Services and Ports
 
 ### Grafana
@@ -27,47 +17,29 @@ $ docker-compose up
 - Database: influx
 
 
-Run the influx client:
+Run the docker compose:
 
 ```bash
-$ docker-compose exec influxdb influx -execute 'SHOW DATABASES'
+$ docker-compose up
 ```
 
-Run the influx interactive console:
+
+## Run the siege ti test the architecture
+
+Following command creates 100 threads and loads each thread with 1m requests
 
 ```bash
-$ docker-compose exec influxdb influx
-
-Connected to http://localhost:8086 version 1.8.0
-InfluxDB shell version: 1.8.0
->
+siege -c 100 -t10M http://localhost/app
 ```
 
-[Import data from a file with -import](https://docs.influxdata.com/influxdb/v1.8/tools/shell/#import-data-from-a-file-with-import)
+Open grafana dashboard: 
+1. follow the link: http://localhost:3000
+2. open side menu
+3. click on dashboards
+4. select `Performance` dashboard and observe the load testing
 
-```bash
-$ docker-compose exec -w /imports influxdb influx -import -path=data.txt -precision=s
-```
 
-## Run the PHP Example
-
-The PHP example generates random example metrics. The random metrics are beeing sent via UDP to the telegraf agent using the StatsD protocol.
-
-The telegraf agents aggregates the incoming data and perodically persists the data into the InfluxDB database.
-
-Grafana connects to the InfluxDB database and is able to visualize the incoming data.
-
-```bash
-$ cd php-example
-$ composer install
-$ php example.php
-Sending Random metrics. Use Ctrl+C to stop.
-..........................^C
-Runtime:	0.88382697105408 Seconds
-Ops:		27 
-Ops/s:		30.548965899738 
-Killed by Ctrl+C
-```
+![Load Testing Example Screenshot](./load-testing-example.png?raw=true "Load Testing Example Screenshot")
 
 ## License
 
